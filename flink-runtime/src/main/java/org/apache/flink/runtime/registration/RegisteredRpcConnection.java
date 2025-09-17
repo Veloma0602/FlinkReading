@@ -102,9 +102,11 @@ public abstract class RegisteredRpcConnection<
                 !isConnected() && pendingRegistration == null,
                 "The RPC connection is already started");
 
+        //TODO 创建注册对象
         final RetryingRegistration<F, G, S, R> newRegistration = createNewRegistration();
 
         if (REGISTRATION_UPDATER.compareAndSet(this, null, newRegistration)) {
+            //TODO 开始注册,注册成功后会调用onRegistrationSuccess方法
             newRegistration.startRegistration();
         } else {
             // concurrent start operation

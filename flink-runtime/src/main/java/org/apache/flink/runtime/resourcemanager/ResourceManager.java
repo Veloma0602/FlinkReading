@@ -267,10 +267,13 @@ public abstract class ResourceManager<WorkerType extends ResourceIDRetrievable>
 
     private void startResourceManagerServices() throws Exception {
         try {
+
+            //选举Leader服务
             jobLeaderIdService.start(new JobLeaderIdActionsImpl());
 
             registerMetrics();
 
+            //心跳服务，跟TaskManager和JobManager心跳
             startHeartbeatServices();
 
             slotManager.start(

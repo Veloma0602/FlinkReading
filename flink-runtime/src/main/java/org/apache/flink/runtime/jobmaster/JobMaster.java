@@ -1164,6 +1164,7 @@ public class JobMaster extends FencedRpcEndpoint<JobMasterId>
         JobShuffleContext context = new JobShuffleContextImpl(executionPlan.getJobID(), this);
         shuffleMaster.registerJob(context);
 
+        //TODO 真正启动JobMaster服务
         startJobMasterServices();
 
         log.info(
@@ -1171,7 +1172,7 @@ public class JobMaster extends FencedRpcEndpoint<JobMasterId>
                 executionPlan.getName(),
                 executionPlan.getJobID(),
                 getFencingToken());
-
+        //
         startScheduling();
     }
 
@@ -1182,8 +1183,10 @@ public class JobMaster extends FencedRpcEndpoint<JobMasterId>
                     createResourceManagerHeartbeatManager(heartbeatServices);
 
             // start the slot pool make sure the slot pool now accepts messages for this leader
-            slotPoolService.start(getFencingToken(), getAddress());
 
+            //TODO 启动slotPool
+            slotPoolService.start(getFencingToken(), getAddress());
+            //尝试连接ResourceManage，槽池的请求来源于JobMaste  r
             // job is ready to go, try to establish connection with resource manager
             //   - activate leader retrieval for the resource manager
             //   - on notification of the leader, the connection will be established and

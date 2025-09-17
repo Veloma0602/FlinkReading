@@ -183,6 +183,8 @@ public class YarnResourceManagerDriver extends AbstractResourceManagerDriver<Yar
     protected void initializeInternal() throws Exception {
         isRunning = true;
         try {
+            //TODO 创建Yarn的ResourceManager的客户端，并且初始化和启动
+
             resourceManagerClient =
                     yarnResourceManagerClientFactory.createResourceManagerClient(
                             yarnHeartbeatIntervalMillis, new AMRMCallbackHandler());

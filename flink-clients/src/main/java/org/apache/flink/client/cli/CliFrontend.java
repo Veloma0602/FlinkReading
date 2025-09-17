@@ -1330,6 +1330,9 @@ public class CliFrontend {
     static int mainInternal(final String[] args) {
         EnvironmentInformation.logEnvironmentInfo(LOG, "Command Line Client", args);
 
+        /**
+         * 获取config的路径   进入路径读配置
+         */
         // 1. find the configuration directory
         final String configurationDirectory = getConfigurationDirectoryFromEnv();
 
